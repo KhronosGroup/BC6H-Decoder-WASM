@@ -1,8 +1,8 @@
-// Copyright (c) 2018-2020 The Khronos Group Inc.
-//
-// SPDX-License-Identifier: CC-BY-4.0
+<!-- Copyright (c) 2018-2020 The Khronos Group Inc. -->
+<!-- -->
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
 
-= Code of Conduct
+# Code of Conduct
 
 A reminder that this issue tracker is managed by the Khronos Group.
 Interactions here should follow the
