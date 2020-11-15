@@ -1,0 +1,62 @@
+{
+  "name": "bc6h-decoder-wasm",
+  "version": "0.1.0",
+  "description": "WebAssembly BC6H decoder.",
+  "keywords": [
+    "gpu",
+    "webgl",
+    "wasm",
+    "hdr",
+    "bc6h",
+    "texture",
+    "ibl",
+    "ktx",
+    "dds"
+  ],
+  "author": "The Khronos Group, Inc.",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/node": "^14.14.7",
+    "@typescript-eslint/eslint-plugin": "^4.7.0",
+    "@typescript-eslint/parser": "^4.7.0",
+    "assemblyscript": "0.17.2",
+    "eslint": "^7.13.0",
+    "eslint-plugin-unicorn": "^23.0.0",
+    "tap-spec": "^5.0.0",
+    "tape": "^5.0.1",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5"
+  },
+  "scripts": {
+    "asbuild:generator": "asc assembly/generator.ts -b build/generator.wasm -t build/generator.wat --optimize --converge --runtime none --noAssert --importMemory --memoryBase 63488",
+    "asbuild:bc6hu-rgba16f": "asc assembly/decoder.ts -u MODE=0 -b build/bc6hu-rgba16f.wasm -t build/bc6hu-rgba16f.wat --optimize --converge --runtime none --noAssert --importMemory",
+    "asbuild:bc6hu-rgb9e5": "asc assembly/decoder.ts -u MODE=1 -b build/bc6hu-rgb9e5.wasm -t build/bc6hu-rgb9e5.wat --optimize --converge --runtime none --noAssert --importMemory",
+    "asbuild:bc6hu-r11fg11fb10f_round": "asc assembly/decoder.ts -u MODE=2 -b build/bc6hu-r11fg11fb10f_round.wasm -t build/bc6hu-r11fg11fb10f_round.wat --optimize --converge --runtime none --noAssert --importMemory",
+    "asbuild:bc6hu-r11fg11fb10f_trunc": "asc assembly/decoder.ts -u MODE=3 -b build/bc6hu-r11fg11fb10f_trunc.wasm -t build/bc6hu-r11fg11fb10f_trunc.wat --optimize --converge --runtime none --noAssert --importMemory",
+    "asbuild:bc6hu-r11fg11fb10f_round_noclamp": "asc assembly/decoder.ts -u MODE=4 -b build/bc6hu-r11fg11fb10f_round_noclamp.wasm -t build/bc6hu-r11fg11fb10f_round_noclamp.wat --optimize --converge --runtime none --noAssert --importMemory",
+    "asbuild:bc6hu-rgb32f": "asc assembly/decoder.ts -u MODE=5 -b build/bc6hu-rgb32f.wasm -t build/bc6hu-rgb32f.wat --optimize --converge --runtime none --noAssert --importMemory",
+    "asbuild:decoders": "npm run asbuild:bc6hu-rgba16f && npm run asbuild:bc6hu-rgb9e5 && npm run asbuild:bc6hu-r11fg11fb10f_round && npm run asbuild:bc6hu-r11fg11fb10f_trunc && npm run asbuild:bc6hu-r11fg11fb10f_round_noclamp && npm run asbuild:bc6hu-rgb32f",
+    "asbuild": "npm run asbuild:generator && npm run asbuild:decoders",
+    "test": "ts-node node_modules/tape/bin/tape test/test.ts | tap-spec"
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint",
+      "unicorn"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+      "semi": "off",
+      "@typescript-eslint/ban-ts-comment": "off",
+      "@typescript-eslint/semi": [
+        "error",
+        "always"
+      ],
+      "unicorn/number-literal-case": "error"
+    }
+  }
+}
