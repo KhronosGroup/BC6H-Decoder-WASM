@@ -29,7 +29,7 @@ Pre-built WebAssembly binary modules (`*.wasm`) are maintained in the `build/` d
 
 4. Built decoders will be available in the `build/` directory.
 
-## Use
+## Overview
 
 Decoders accept only raw BC6H blocks. Zstandard or zlib/deflate compression (if present) must be decoded in advance.
 
@@ -88,7 +88,7 @@ Each 16-byte BC6H block is decoded to 64-192 bytes of uncompressed floating-poin
 
     // Uncompressed texture padded to multiple-of-4 height
     const uncompressedByteLength = width * yBlocks * 4 * pixelByteLength;
-    const totalByteLength = compressedDataLength + uncompressedDataLength;
+    const totalByteLength = compressedByteLength + uncompressedByteLength;
     ```
 
 2. Create a [`WebAssembly.Memory`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Memory) object large enough to contain both the compressed and the uncompressed data. Its size is given in pages, each page is 65536 bytes. The zeroth page is reserved for the decoder's internal use, so the total amount of pages should be computed as:
