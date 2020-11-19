@@ -4,6 +4,7 @@
 # WebAssembly BC6H Decoder
 
 ![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)
+[![CI](https://github.com/KhronosGroup/BC6H-Decoder-WASM/workflows/CI/badge.svg?branch=main&event=push)](https://github.com/KhronosGroup/BC6H-Decoder-WASM/actions?query=workflow%3ACI)
 
 A collection of optimized WebAssembly decoders for [BC6H unsigned](https://www.khronos.org/registry/DataFormat/specs/1.3/dataformat.1.3.html#bptc_bc6h) GPU compressed HDR texture format.
 
