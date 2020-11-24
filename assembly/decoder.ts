@@ -836,7 +836,7 @@ function decodeTwoSubsetBlock(q0: u64, q1: u64, offset: i32, stride: i32): void 
         ((d0 >> 17) & 0x20) |
         ((d0 >> 10) & 0x10) |
         ((d2 <<  3) & 0x08) |
-        ((d1 >> 61))
+        ((d1 >> 29))
       );
 
       r3 = (d2 >> 7) & 0x3F;
